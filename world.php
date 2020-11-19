@@ -13,12 +13,34 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $search_query = trim(htmlspecialchars(strip_tags($_GET['country'])));
 
+$matching_countries = $conn->query("SELECT * FROM countries WHERE name LIKE '%$search_query%')");
 
-$matching_countries = $conn->query("SELECT * FROM countries WHERE name LIKE '%$search_query%'");
+if ($search_query != "") {
+	$results = $matching_countries;
+}
 
 ?>
-<ul>
-<?php foreach ($matching_countries as $row): ?>
-  <li><?= $row['name'] . ' is ruled by ' . $row['head_of_state']; ?></li>
-<?php endforeach; ?>
-</ul>
+<table class="table">
+	<thead>
+		<th>Name</th>
+		<th>Continent</th>
+		<th>Independence</th>
+		<th>Head of State</th>
+	</thead>
+	<tbody>
+		<?php if (empty($results)): ?>
+			<tr>
+				<td colspan="4">Nothing found</td>
+			</tr>
+		<?php else: ?>
+			<?php foreach ($results as $row): ?>
+			  <tr>
+				  <td><?= $row['name'] ?></td>
+				  <td><?= $row['continent'] ?></td>
+				  <td><?= $row['independence_year'] ?></td>
+				  <td><?= $row['head_of_state'] ?></td>
+				</tr>
+			<?php endforeach; ?>
+		<?php endif; ?>
+	</tbody>
+</table>

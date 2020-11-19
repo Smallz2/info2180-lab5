@@ -3,17 +3,49 @@
 
 window.onload = function() {
 	main()
+
 }
 
 function main() {
-	var search_button = document.querySelector("#lookup");
+	var search_button = document.querySelector("#lookup-country");
+	var reset_button = document.querySelector("#lookup-reset");
+	fetchData()
 
-	search_button.addEventListener('click', fetch_search);
+	search_button.addEventListener('click', fetchSearch);
+	reset_button.addEventListener('click', resetSearch);
 }
 
-function fetch_search(event) {
+function fetchData(event) {
+	try {
+		fetch('./world.php') 
+			.then(
+				function(response) {
+					if (response.status !== 200) {
+						console.log("Something went wrong. Status code: " + response.status);
+						return;
+					}
+
+					response.text().then(function(promise) {
+						updateUI(promise);
+					});
+				}
+			)
+			.catch(function(error) {
+				console.error("fetching error: " + error);
+			});
+	} catch(error) {
+		console.error(error);
+	}
+}
+
+function resetSearch() {
+	document.querySelector("#country").value = '';
+	fetchData()
+}
+
+function fetchSearch(event) {
 	var search_input = document.querySelector("#country").value;
-	
+
 	try {
 		// Set url params
 		var params = { country: `${search_input}` }

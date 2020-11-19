@@ -1,1 +1,165 @@
 /* Add your own styles */
+
+/* --------- Colors --------- */
+:root {
+	--white: #fff;
+	--blue: #5A67D8;
+	--grey: #6b7280;
+	--light-grey: #E2E8F0;
+	--dark-grey: #4A5568;
+	--green: #48BB78;
+	--red: #f30;
+}
+
+/* --------- Body --------- */
+body {
+  margin: 0;
+  font-family: apple-system,BlinkMacSystemFont,"SegoeUI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sansserif;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: 
+    'header'
+    'main';
+}
+
+/* --------- header --------- */
+header {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 50px;
+	grid-area: header;
+	padding: 20px;
+	color: var(--white);
+	background-color: var(--blue);
+}
+
+header > h1 {
+	text-align: center;
+}
+
+/* --------- main --------- */
+
+main {
+  grid-area: main;
+}
+
+/* --------- controls --------- */
+
+#controls {
+	display: flex;
+	flex-flow: column;
+}
+
+.buttons {
+	display: flex;
+	justify-content: center;
+}
+
+/* --------- Table --------- */
+
+.table {
+	display: table;
+	width: 100%;
+	box-sizing: border-box;
+	border-collapse: collapse;
+	border: 1px solid #dee2e6;
+}
+
+.table tbody tr:nth-of-type(odd) {
+  background-color: rgba(0,0,0,.05);
+}
+
+.table td, .table th {
+  padding: .75rem;
+  vertical-align: top;
+	border: 1px solid #dee2e6;
+}
+
+/* --------- Global Stuff --------- */
+
+.container {
+  margin: 0 auto;
+  max-width: 960px;
+  width: 80%;
+}
+
+.btn {
+	font-size: 100%;
+	padding: 10px 20px;
+	color: rgba(0,0,0,.8);
+	border: transparent;
+	background-color: #e6e6e6;
+	text-decoration: none;
+	border-radius: 2px;
+	cursor: pointer;
+	-webkit-box-shadow: 0px 0px 17px 3px rgba(211,211,211,0.88); 
+	box-shadow: 0px 0px 17px 3px rgba(211,211,211,0.88);
+}
+
+.btn:hover {
+	background-image: linear-gradient(transparent,rgba(0,0,0,.05) 40%,rgba(0,0,0,.1));
+}
+
+.btn-primary {
+	background-color: var(--blue);
+	color: var(--white);
+}
+
+.btn-success {
+	background-color: var(--green);
+	color: var(--white);
+}
+
+.btn-danger {
+	background-color: var(--red);
+	color: var(--white);
+}
+
+.search-form > form {
+	display: flex;
+	margin-bottom: 50px;
+}
+
+input {
+	height: 50px;
+	flex: 1;
+	padding: 10px 15px;
+	box-sizing: border-box;
+	text-align: start;
+	display: inline-block;
+	-webkit-box-shadow: 0px 0px 17px 3px rgba(211,211,211,0.88); 
+	box-shadow: 0px 0px 17px 3px rgba(211,211,211,0.88);
+	border: 1px solid var(--light-grey);
+	border-radius: 3px;
+	margin-right: 5px;
+}
+
+.mb-2 {
+	margin-bottom: 20px;
+}
+
+.mb-4 {
+	margin-bottom: 40px;
+}
+
+.ml-1 {
+	margin-left: 10px;
+}
+
+.mb-0 {
+	margin-bottom: 0px;
+}
+
+.mt-0 {
+	margin-top: 0px;
+}
+
+h4, h3 {
+	text-transform: uppercase;
+}
+
+.text-danger {
+	color: var(--red);
+}
